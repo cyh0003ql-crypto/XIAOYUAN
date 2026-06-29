@@ -1,0 +1,84 @@
+<page-meta page-style="overflow: hidden;" />
+<view class="container">
+
+  <scroll-view scroll-y="true" scroll-x="{{false}}" class="scroll-area" show-scrollbar="false">
+
+    <!-- 基本信息 -->
+    <view class="section-label">基本信息</view>
+    <view class="form-card">
+      <view class="form-row">
+        <text class="form-label">客服微信号</text>
+        <input
+          class="form-input"
+          placeholder="请输入微信号"
+          placeholder-class="input-ph"
+          value="{{wechatId}}"
+          bindinput="onWechatIdInput"
+        />
+      </view>
+      <view class="form-divider"></view>
+      <view class="form-row form-row-col">
+        <text class="form-label">服务时间</text>
+        <textarea
+          class="form-textarea"
+          placeholder="例：工作日 9:00-18:00，节假日可能延迟回复"
+          placeholder-class="input-ph"
+          value="{{serviceTime}}"
+          bindinput="onServiceTimeInput"
+          auto-height
+        />
+      </view>
+      <view class="form-divider"></view>
+      <view class="form-row form-row-col">
+        <text class="form-label">添加说明</text>
+        <textarea
+          class="form-textarea"
+          placeholder="扫码/搜索添加的引导文字"
+          placeholder-class="input-ph"
+          value="{{guideText}}"
+          bindinput="onGuideTextInput"
+          auto-height
+        />
+      </view>
+    </view>
+
+    <!-- 二维码上传 -->
+    <view class="section-label">客服二维码</view>
+    <view class="form-card qr-upload-card">
+      <view class="qr-preview" wx:if="{{qrCode}}" bindtap="onChooseQR">
+        <image src="{{qrCode}}" class="qr-preview-img" mode="aspectFit"/>
+        <view class="qr-change-tip">点击更换</view>
+      </view>
+      <view class="qr-upload-btn" wx:else bindtap="onChooseQR">
+        <text class="qr-upload-icon">📷</text>
+        <text class="qr-upload-text">上传二维码图片</text>
+        <text class="qr-upload-sub">支持 JPG / PNG</text>
+      </view>
+      <view class="qr-tip">上传后用户扫码即可添加客服微信</view>
+    </view>
+
+    <!-- 预览 -->
+    <view class="section-label">效果预览</view>
+    <view class="preview-card">
+      <view class="preview-hero">
+        <view class="preview-icon-wrap">
+          <text class="preview-icon">🎧</text>
+        </view>
+        <view class="preview-title">联系客服</view>
+        <view class="preview-sub">我们随时为您提供帮助</view>
+      </view>
+      <view class="preview-row">
+        <text class="preview-row-icon">💬</text>
+        <view class="preview-row-content">
+          <view class="preview-row-label">客服微信号</view>
+          <view class="preview-row-val">{{wechatId || '暂未配置'}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 保存按钮 -->
+    <view class="save-btn" bindtap="onSave">保存设置</view>
+
+    <view style="height:60rpx;"></view>
+  </scroll-view>
+</view>

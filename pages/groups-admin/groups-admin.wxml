@@ -1,0 +1,138 @@
+<view class="page">
+
+  <view class="top-bar">
+    <text class="top-tip">共 {{groups.length}} 个群聊</text>
+    <view class="add-btn" bindtap="onOpenAdd">+ 新增群聊</view>
+  </view>
+
+  <view class="group-list">
+    <view class="empty-tip" wx:if="{{groups.length === 0}}">
+      <text>暂无群聊，点击右上角添加</text>
+    </view>
+
+    <view class="group-card" wx:for="{{groups}}" wx:key="id">
+      <view class="group-left">
+        <view class="group-avatar">{{item.emoji || '💬'}}</view>
+        <view class="group-info">
+          <view class="group-name-row">
+            <text class="group-name">{{item.name}}</text>
+            <view class="full-badge" wx:if="{{item.isFull}}">满员</view>
+          </view>
+          <view class="group-meta">已加入 {{item.count}} 人</view>
+        </view>
+      </view>
+      <view class="group-actions">
+        <!-- 满员切换 -->
+        <view
+          class="action-btn full-btn {{item.isFull ? 'full-on' : 'full-off'}}"
+          data-id="{{item.id}}"
+          bindtap="onToggleFull"
+        >{{item.isFull ? '取消满员' : '满员'}}</view>
+        <!-- 二维码 -->
+        <view
+          class="action-btn qr-btn {{item.qrPath ? 'qr-set' : 'qr-empty'}}"
+          data-id="{{item.id}}"
+          data-name="{{item.name}}"
+          data-qrpath="{{item.qrPath}}"
+          bindtap="onEditQr"
+        >{{item.qrPath ? '改码' : '上传码'}}</view>
+        <!-- 删除 -->
+        <view
+          class="action-btn del-btn"
+          data-id="{{item.id}}"
+          data-name="{{item.name}}"
+          bindtap="onDelTap"
+        >删除</view>
+      </view>
+    </view>
+  </view>
+
+  <view style="height:80rpx;"></view>
+</view>
+
+<!-- ===== 新增群聊弹窗 ===== -->
+<view class="modal-mask" wx:if="{{showAddModal}}" bindtap="onCloseAdd">
+  <view class="modal-card" catchtap="noop">
+    <view class="modal-title">新增群聊</view>
+    <view class="modal-divider"></view>
+
+    <view class="mf-item">
+      <text class="mf-label">群名</text>
+      <input class="mf-input" placeholder="如：新生交流群" bindinput="onInputName" value="{{newName}}" />
+    </view>
+    <view class="mf-item">
+      <text class="mf-label">图标</text>
+      <input class="mf-input" placeholder="输入 emoji，如 🎓（不填默认💬）" bindinput="onInputEmoji" value="{{newEmoji}}" />
+    </view>
+    <view class="mf-item">
+      <text class="mf-label">人数</text>
+      <input class="mf-input" placeholder="群成员数量" type="number" bindinput="onInputCount" value="{{newCount}}" />
+      <view
+        class="full-toggle {{newIsFull ? 'full-toggle-on' : 'full-toggle-off'}}"
+        bindtap="onToggleNewFull"
+      >{{newIsFull ? '✓ 满员' : '满员'}}</view>
+    </view>
+
+    <view class="qr-upload-wrap">
+      <text class="mf-label" style="margin-bottom:12rpx;display:block;">二维码</text>
+      <view class="qr-preview-area" bindtap="onUploadQr">
+        <block wx:if="{{newQrPath}}">
+          <image src="{{newQrPath}}" class="qr-preview-img" mode="aspectFit" />
+          <view class="qr-replace-tip">点击更换</view>
+        </block>
+        <block wx:else>
+          <view class="qr-upload-placeholder">
+            <text class="qr-upload-icon">📷</text>
+            <text class="qr-upload-text">点击上传群二维码</text>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <view class="modal-error" wx:if="{{addError}}">{{addError}}</view>
+
+    <view class="modal-actions">
+      <view class="modal-btn-cancel" bindtap="onCloseAdd">取消</view>
+      <view class="modal-btn-confirm" bindtap="onConfirmAdd">添加</view>
+    </view>
+  </view>
+</view>
+
+<!-- ===== 编辑二维码弹窗 ===== -->
+<view class="modal-mask" wx:if="{{showQrModal}}" bindtap="onCloseQr">
+  <view class="modal-card" catchtap="noop">
+    <view class="modal-title">{{editQrName}} 二维码</view>
+    <view class="modal-divider"></view>
+    <view class="qr-upload-wrap">
+      <view class="qr-preview-area" bindtap="onUploadEditQr">
+        <block wx:if="{{editQrPath}}">
+          <image src="{{editQrPath}}" class="qr-preview-img" mode="aspectFit" />
+          <view class="qr-replace-tip">点击更换</view>
+        </block>
+        <block wx:else>
+          <view class="qr-upload-placeholder">
+            <text class="qr-upload-icon">📷</text>
+            <text class="qr-upload-text">点击上传群二维码</text>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="modal-actions">
+      <view class="modal-btn-cancel" bindtap="onCloseQr">取消</view>
+      <view class="modal-btn-confirm" bindtap="onConfirmEditQr">保存</view>
+    </view>
+  </view>
+</view>
+
+<!-- ===== 删除确认弹窗 ===== -->
+<view class="modal-mask" wx:if="{{showDelModal}}" bindtap="onCancelDel">
+  <view class="modal-card" catchtap="noop">
+    <view class="modal-title">删除群聊</view>
+    <view class="modal-divider"></view>
+    <view class="modal-notice">确定删除「{{delName}}」？用户侧将同步移除该群聊。</view>
+    <view class="modal-actions">
+      <view class="modal-btn-cancel" bindtap="onCancelDel">取消</view>
+      <view class="modal-btn-danger" bindtap="onConfirmDel">删除</view>
+    </view>
+  </view>
+</view>

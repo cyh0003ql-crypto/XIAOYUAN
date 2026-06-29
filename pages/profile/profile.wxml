@@ -1,0 +1,168 @@
+<view class="container">
+  <scroll-view scroll-y="true" class="scroll-area" show-scrollbar="false">
+
+    <!-- 用户信息头部 -->
+    <view class="user-header">
+      <view class="avatar-wrap" bindtap="goSettings">
+        <image wx:if="{{userInfo.avatar}}" src="{{userInfo.avatar}}" class="avatar-img" mode="aspectFill"/>
+        <view wx:else class="avatar-placeholder">
+          <text class="avatar-emoji">👤</text>
+        </view>
+      </view>
+      <view class="user-info">
+        <view class="user-name-row">
+          <text class="user-name">{{userInfo.name || '小科同学'}}</text>
+        </view>
+        <view class="user-school-row">
+          <text class="school-icon">📍</text>
+          <text class="user-school">广州科技职业学院</text>
+          <text class="school-arrow">›</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 我的订单 -->
+    <view class="section-card">
+      <view class="card-header">
+        <text class="card-title">我的订单</text>
+        <view class="card-more" bindtap="goOrders">
+          <text class="card-more-text">全部订单</text>
+          <text class="card-more-arrow">›</text>
+        </view>
+      </view>
+      <view class="order-row">
+        <view class="order-item" bindtap="goOrderTab" data-tab="unpaid">
+          <view class="order-icon-wrap">
+            <text class="order-icon">💳</text>
+            <view class="order-badge" wx:if="{{orderBadge.unpaid > 0}}">{{orderBadge.unpaid}}</view>
+          </view>
+          <text class="order-label">待付款</text>
+        </view>
+        <view class="order-item" bindtap="goOrderTab" data-tab="unsent">
+          <view class="order-icon-wrap">
+            <text class="order-icon">📦</text>
+            <view class="order-badge" wx:if="{{orderBadge.unsent > 0}}">{{orderBadge.unsent}}</view>
+          </view>
+          <text class="order-label">待发货</text>
+        </view>
+        <view class="order-item" bindtap="goOrderTab" data-tab="unreceived">
+          <view class="order-icon-wrap">
+            <text class="order-icon">🚚</text>
+            <view class="order-badge" wx:if="{{orderBadge.unreceived > 0}}">{{orderBadge.unreceived}}</view>
+          </view>
+          <text class="order-label">待收货</text>
+        </view>
+        <view class="order-item" bindtap="goOrderTab" data-tab="unreview">
+          <view class="order-icon-wrap">
+            <text class="order-icon">💬</text>
+            <view class="order-badge" wx:if="{{orderBadge.unreview > 0}}">{{orderBadge.unreview}}</view>
+          </view>
+          <text class="order-label">待评价</text>
+        </view>
+        <view class="order-item" bindtap="goOrderTab" data-tab="refund">
+          <view class="order-icon-wrap">
+            <text class="order-icon">🔄</text>
+          </view>
+          <text class="order-label">售后/退款</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 常用功能 -->
+    <view class="section-card">
+      <view class="card-header">
+        <text class="card-title">常用功能</text>
+      </view>
+      <view class="func-row">
+        <view class="func-item" bindtap="onFuncTap" data-type="favorite">
+          <view class="func-icon-wrap">
+            <text class="func-icon">♡</text>
+          </view>
+          <text class="func-name">收藏夹</text>
+          <text class="func-sub">{{favoriteCount}}个商品</text>
+        </view>
+        <view class="func-item" bindtap="onFuncTap" data-type="notice">
+          <view class="func-icon-wrap">
+            <text class="func-icon">💬</text>
+          </view>
+          <text class="func-name">消息通知</text>
+          <text class="func-sub">{{noticeCount}}条未读</text>
+        </view>
+        <view class="func-item" bindtap="onFuncTap" data-type="coupon">
+          <view class="func-icon-wrap">
+            <text class="func-icon">🎫</text>
+          </view>
+          <text class="func-name">优惠券</text>
+          <text class="func-sub">{{couponCount}}张可用</text>
+        </view>
+        <view class="func-item" bindtap="goContact">
+          <view class="func-icon-wrap">
+            <text class="func-icon">🎧</text>
+          </view>
+          <text class="func-name">联系我们</text>
+          <text class="func-sub">随时为您服务</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 功能列表 -->
+    <view class="list-card">
+      <view class="list-item" bindtap="goContact">
+        <view class="list-left">
+          <text class="list-icon">🎧</text>
+          <text class="list-name">联系我们</text>
+        </view>
+        <view class="list-right">
+          <text class="list-sub">随时为您服务</text>
+          <text class="list-arrow">›</text>
+        </view>
+      </view>
+      <view class="list-item" bindtap="onMenuTap" data-type="help">
+        <view class="list-left">
+          <text class="list-icon">❓</text>
+          <text class="list-name">帮助与反馈</text>
+        </view>
+        <view class="list-right">
+          <text class="list-sub">常见问题/意见反馈</text>
+          <text class="list-arrow">›</text>
+        </view>
+      </view>
+      <view class="list-item" bindtap="onMenuTap" data-type="privacy">
+        <view class="list-left">
+          <text class="list-icon">🛡</text>
+          <text class="list-name">隐私与安全</text>
+        </view>
+        <view class="list-right">
+          <text class="list-sub">隐私设置/账号安全</text>
+          <text class="list-arrow">›</text>
+        </view>
+      </view>
+      <view class="list-item" bindtap="onMenuTap" data-type="about">
+        <view class="list-left">
+          <text class="list-icon">ℹ️</text>
+          <text class="list-name">关于我们</text>
+        </view>
+        <view class="list-right">
+          <text class="list-sub">了解Petit Aura</text>
+          <text class="list-arrow">›</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 工作台入口 -->
+    <view class="merchant-entry" bindtap="goMerchant">
+      <view class="merchant-left">
+        <view class="merchant-icon-box">
+          <text class="merchant-icon">🏪</text>
+        </view>
+        <view class="merchant-text">
+          <text class="merchant-title">工作台</text>
+          <text class="merchant-sub">主账号 / 子账号登录</text>
+        </view>
+      </view>
+      <text class="merchant-arrow">›</text>
+    </view>
+
+    <view style="height: 180rpx;"></view>
+  </scroll-view>
+</view>

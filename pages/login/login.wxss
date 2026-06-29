@@ -1,0 +1,223 @@
+.container {
+  min-height: 100vh;
+  background: #F5EDE0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+}
+
+/* ── 品牌头部 ── */
+.brand-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100rpx 0 60rpx;
+}
+
+.brand-logo {
+  width: 140rpx;
+  height: 140rpx;
+  background: #FFFFFF;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 32rpx rgba(139,99,64,0.15);
+  margin-bottom: 28rpx;
+}
+
+.brand-icon {
+  font-size: 72rpx;
+}
+
+.brand-name {
+  font-size: 48rpx;
+  font-weight: 800;
+  color: #3D2B1F;
+  letter-spacing: 2rpx;
+  margin-bottom: 12rpx;
+}
+
+.brand-sub {
+  font-size: 24rpx;
+  color: #A08060;
+}
+
+/* ── 表单卡片 ── */
+.form-card {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 48rpx 40rpx 40rpx;
+  box-shadow: 0 4rpx 24rpx rgba(139,99,64,0.1);
+  box-sizing: border-box;
+}
+
+.form-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #3D2B1F;
+  display: block;
+  margin-bottom: 40rpx;
+}
+
+/* ── 输入组 ── */
+.input-group {
+  margin-bottom: 32rpx;
+}
+
+.input-label {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  margin-bottom: 12rpx;
+}
+
+.input-icon {
+  font-size: 28rpx;
+}
+
+.input-label-text {
+  font-size: 24rpx;
+  color: #666;
+  font-weight: 500;
+}
+
+.input-field {
+  width: 100%;
+  height: 88rpx;
+  background: #F8F0E8;
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  color: #3D2B1F;
+  box-sizing: border-box;
+  border: 2rpx solid transparent;
+}
+
+.input-field:focus {
+  border-color: #8B6340;
+  background: #FFFAF5;
+}
+
+.input-placeholder {
+  color: #BBAA99;
+  font-size: 26rpx;
+}
+
+.password-row {
+  display: flex;
+  align-items: center;
+  background: #F8F0E8;
+  border-radius: 16rpx;
+  border: 2rpx solid transparent;
+  overflow: hidden;
+}
+
+.password-input {
+  flex: 1;
+  background: transparent;
+  border-radius: 0;
+}
+
+.eye-btn {
+  padding: 0 24rpx;
+  font-size: 36rpx;
+  flex-shrink: 0;
+}
+
+/* ── 登录按钮 ── */
+.login-btn {
+  width: 100%;
+  height: 96rpx;
+  border-radius: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8rpx 0 20rpx;
+  transition: opacity 0.2s;
+}
+
+.login-btn.active {
+  background: linear-gradient(135deg, #C4A882 0%, #8B6340 100%);
+  box-shadow: 0 6rpx 20rpx rgba(139,99,64,0.35);
+}
+
+.login-btn.disabled {
+  background: #D9CEC3;
+}
+
+.login-btn-text {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 2rpx;
+}
+
+/* ── 新用户提示 ── */
+.hint-row {
+  margin-bottom: 8rpx;
+}
+
+.hint-text {
+  font-size: 22rpx;
+  color: #8B6340;
+}
+
+/* ── 分割线 ── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin: 24rpx 0;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1rpx;
+  background: #EDE0D0;
+}
+
+.divider-text {
+  font-size: 22rpx;
+  color: #BBB;
+}
+
+/* ── 游客按钮 ── */
+.guest-btn {
+  width: 100%;
+  height: 88rpx;
+  border-radius: 44rpx;
+  border: 2rpx solid #D4B896;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.guest-btn-text {
+  font-size: 28rpx;
+  color: #8B6340;
+  font-weight: 500;
+}
+
+/* ── 底部协议 ── */
+.footer-tip {
+  display: flex;
+  align-items: center;
+  margin-top: 40rpx;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4rpx;
+}
+
+.footer-text {
+  font-size: 22rpx;
+  color: #AAA;
+}
+
+.footer-link {
+  font-size: 22rpx;
+  color: #8B6340;
+}

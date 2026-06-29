@@ -1,0 +1,331 @@
+.container {
+  height: 100vh;
+  background: #F5EDE0;
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll-area {
+  flex: 1;
+  height: 100%;
+}
+
+/* ── 用户信息头部 ── */
+.user-header {
+  display: flex;
+  align-items: center;
+  padding: 60rpx 32rpx 40rpx;
+  gap: 24rpx;
+}
+
+.avatar-wrap {
+  flex-shrink: 0;
+  width: 136rpx;
+  height: 136rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4rpx solid #D4B896;
+  background: #EDD9C0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+}
+
+.avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.avatar-emoji {
+  font-size: 72rpx;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 14rpx;
+}
+
+.user-name {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #3D2B1F;
+}
+
+
+.user-school-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 6rpx;
+  background: rgba(139,99,64,0.1);
+  border-radius: 30rpx;
+  padding: 8rpx 18rpx;
+}
+
+.school-icon {
+  font-size: 24rpx;
+}
+
+.user-school {
+  font-size: 22rpx;
+  color: #8B6340;
+}
+
+.school-arrow {
+  font-size: 24rpx;
+  color: #8B6340;
+}
+
+/* ── 通用卡片 ── */
+.section-card {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  margin: 0 24rpx 20rpx;
+  padding: 28rpx 24rpx 32rpx;
+  box-shadow: 0 2rpx 16rpx rgba(139,99,64,0.07);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28rpx;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #3D2B1F;
+}
+
+.card-more {
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+}
+
+.card-more-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.card-more-arrow {
+  font-size: 28rpx;
+  color: #999;
+}
+
+/* ── 订单区域 ── */
+.order-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.order-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rpx;
+  flex: 1;
+}
+
+.order-icon-wrap {
+  position: relative;
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-icon {
+  font-size: 52rpx;
+  color: #5C3D20;
+}
+
+.order-badge {
+  position: absolute;
+  top: -8rpx;
+  right: -8rpx;
+  background: #FF4444;
+  color: #FFFFFF;
+  font-size: 18rpx;
+  font-weight: 700;
+  min-width: 32rpx;
+  height: 32rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6rpx;
+  border: 2rpx solid #FFF;
+}
+
+.order-label {
+  font-size: 22rpx;
+  color: #666;
+  text-align: center;
+}
+
+/* ── 常用功能 ── */
+.func-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.func-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+  flex: 1;
+}
+
+.func-icon-wrap {
+  width: 96rpx;
+  height: 96rpx;
+  background: #F5EDE0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4rpx;
+}
+
+.func-icon {
+  font-size: 48rpx;
+  color: #8B6340;
+}
+
+.func-name {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #3D2B1F;
+}
+
+.func-sub {
+  font-size: 20rpx;
+  color: #999;
+}
+
+/* ── 功能列表 ── */
+.list-card {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  margin: 0 24rpx 20rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 16rpx rgba(139,99,64,0.07);
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 28rpx;
+  border-bottom: 1rpx solid #F5EDE0;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.list-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.list-icon {
+  font-size: 36rpx;
+  width: 44rpx;
+  text-align: center;
+}
+
+.list-name {
+  font-size: 28rpx;
+  color: #3D2B1F;
+  font-weight: 500;
+}
+
+.list-right {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+}
+
+.list-sub {
+  font-size: 22rpx;
+  color: #AAA;
+}
+
+.list-arrow {
+  font-size: 36rpx;
+  color: #CCC;
+}
+
+/* ── 工作台入口 ── */
+.merchant-entry {
+  margin: 0 24rpx 24rpx;
+  background: linear-gradient(135deg, #3D2B1F 0%, #6B4A30 100%);
+  border-radius: 24rpx;
+  padding: 30rpx 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4rpx 20rpx rgba(61,43,31,0.25);
+}
+
+.merchant-left {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.merchant-icon-box {
+  width: 80rpx;
+  height: 80rpx;
+  background: rgba(255,255,255,0.15);
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.merchant-icon {
+  font-size: 40rpx;
+}
+
+.merchant-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.merchant-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.merchant-sub {
+  font-size: 22rpx;
+  color: rgba(255,255,255,0.65);
+}
+
+.merchant-arrow {
+  font-size: 40rpx;
+  color: rgba(255,255,255,0.6);
+}

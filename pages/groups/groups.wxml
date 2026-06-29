@@ -1,0 +1,44 @@
+<view class="container">
+  <scroll-view scroll-y="true" class="scroll-area" show-scrollbar="false">
+    <view class="group-list">
+      <view class="group-item" wx:for="{{groups}}" wx:key="id">
+        <view class="group-avatar-box">
+          <text class="group-emoji">{{item.emoji || '💬'}}</text>
+        </view>
+        <view class="group-info">
+          <view class="group-name">{{item.name}}</view>
+          <view class="group-count">已加入 {{item.count}} 人</view>
+        </view>
+        <view
+          class="join-btn {{item.isFull ? 'join-btn-full' : ''}}"
+          bindtap="joinGroup"
+          data-id="{{item.id}}"
+        >{{item.isFull ? '已满员' : '加入'}}</view>
+      </view>
+    </view>
+
+    <view style="height:60rpx;"></view>
+  </scroll-view>
+</view>
+
+<!-- ===== 二维码弹窗 ===== -->
+<view class="qr-mask" wx:if="{{showQrPopup && activeGroup}}" bindtap="closeQrPopup">
+  <view class="qr-card" catchtap="noop">
+    <view class="qr-card-header">
+      <view class="qr-group-emoji">{{activeGroup.emoji || '💬'}}</view>
+      <view class="qr-group-name">{{activeGroup.name}}</view>
+      <view class="qr-group-count">{{activeGroup.count}} 人</view>
+    </view>
+
+    <view class="qr-img-wrap">
+      <image src="{{activeGroup.qrPath}}" class="qr-image" mode="aspectFit" />
+    </view>
+
+    <view class="qr-tip">长按或扫描二维码加入群聊</view>
+
+    <view class="qr-actions">
+      <view class="qr-save-btn" bindtap="onSaveQr">保存到相册</view>
+      <view class="qr-close-btn" bindtap="closeQrPopup">关闭</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,209 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #F5EDE0;
+}
+
+.search-wrap {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 32rpx;
+  flex-shrink: 0;
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 50rpx;
+  padding: 16rpx 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(139,99,64,0.08);
+  margin-right: 16rpx;
+}
+
+.search-icon { font-size: 30rpx; margin-right: 12rpx; }
+.search-input { flex: 1; font-size: 28rpx; color: #333; }
+
+.more-btn {
+  font-size: 36rpx;
+  color: #8B6340;
+  font-weight: 700;
+  padding: 0 8rpx;
+}
+
+/* 地图容器 */
+.map-wrap {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== 实时地图 ===== */
+.campus-map {
+  width: 100%;
+  height: 100%;
+}
+
+/* ===== 图片地图：movable-area/view ===== */
+.img-map-area {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.img-map-view {
+  position: relative;
+}
+
+.img-map {
+  width: 750rpx;
+  display: block;
+}
+
+/* 图片地图标注 Pin */
+.map-pin {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+}
+
+.pin-dot {
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50% 50% 50% 0;
+  background: #E8453C;
+  transform: rotate(-45deg);
+  box-shadow: 0 2rpx 6rpx rgba(0,0,0,0.3);
+}
+
+.pin-active .pin-dot {
+  background: #8B6340;
+}
+
+.pin-label {
+  margin-top: 6rpx;
+  background: #FFFFFF;
+  color: #3D2B1F;
+  font-size: 18rpx;
+  font-weight: 600;
+  padding: 4rpx 10rpx;
+  border-radius: 8rpx;
+  white-space: nowrap;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.15);
+  max-width: 180rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== 右侧分类面板 ===== */
+.category-panel {
+  position: absolute;
+  right: 0;
+  top: 20rpx;
+  width: 120rpx;
+  z-index: 10;
+}
+
+.category-list {
+  background: rgba(255,255,255,0.92);
+  border-radius: 16rpx 0 0 16rpx;
+  overflow: hidden;
+  box-shadow: -2rpx 2rpx 12rpx rgba(139,99,64,0.08);
+}
+
+.category-item {
+  padding: 20rpx 12rpx;
+  font-size: 22rpx;
+  color: #666;
+  text-align: center;
+  line-height: 1.4;
+  border-bottom: 1rpx solid rgba(240,232,220,0.5);
+}
+
+.category-item:last-child { border-bottom: none; }
+
+.category-active {
+  color: #8B6340;
+  font-weight: 600;
+  background: #F5EDE0;
+}
+
+/* ===== 底部店铺卡片 ===== */
+.bottom-sheet {
+  flex-shrink: 0;
+  background: #FFFFFF;
+  border-radius: 28rpx 28rpx 0 0;
+  box-shadow: 0 -4rpx 20rpx rgba(139,99,64,0.10);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.28s ease;
+}
+
+.bottom-sheet-show {
+  max-height: 400rpx;
+}
+
+/* 底部卡片 */
+.callout-card {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  padding: 32rpx 36rpx calc(36rpx + 112rpx + env(safe-area-inset-bottom));
+  position: relative;
+}
+
+/* 左侧店铺图片 */
+.callout-img-wrap {
+  flex-shrink: 0;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  background: #F5EDE0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.callout-img {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.callout-img-placeholder {
+  font-size: 52rpx;
+}
+
+/* 右侧信息 */
+.callout-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.callout-close {
+  position: absolute;
+  top: 20rpx;
+  right: 28rpx;
+  font-size: 40rpx;
+  color: #BBAA99;
+  line-height: 1;
+}
+
+.callout-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #3D2B1F;
+  margin-bottom: 10rpx;
+  padding-right: 40rpx;
+}
+
+.callout-row {
+  font-size: 24rpx;
+  color: #7A6050;
+  line-height: 1.8;
+}

@@ -1,0 +1,119 @@
+<view class="container">
+  <!-- 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-content">
+      <view class="nav-title">Petit Aura校园服务</view>
+      <view class="nav-right">
+        <view class="school-tag">
+          <text class="school-name">广州科技职业学院</text>
+          <text class="arrow">∨</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view class="search-wrap">
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="搜索服务 / 店铺 / 商品" placeholder-style="color:#BBAA99;" />
+    </view>
+  </view>
+
+  <!-- 滚动内容区域 -->
+  <scroll-view scroll-y="true" class="scroll-area" enhanced="true" show-scrollbar="false">
+
+    <!-- Banner -->
+    <view class="banner-card" bindtap="goToMap">
+      <view class="banner-deco-1"></view>
+      <view class="banner-deco-2"></view>
+      <view class="banner-deco-3"></view>
+      <view class="banner-text">
+        <view class="banner-pill">校园专属</view>
+        <view class="banner-title">校园服务</view>
+        <view class="banner-title">一站式解决</view>
+        <view class="banner-btn">
+          <text>探索校园 →</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 三大服务入口 -->
+    <view class="service-grid">
+      <view class="service-item" bindtap="goToRepair">
+        <view class="service-icon-wrap repair-ico">
+          <text class="service-char">修</text>
+        </view>
+        <view class="service-name">数码维修</view>
+        <view class="service-desc">专业维修</view>
+        <view class="service-desc">快速响应</view>
+        <view class="service-btn">去维修</view>
+      </view>
+
+      <view class="service-item" bindtap="goToSecondhand">
+        <view class="service-icon-wrap trade-ico">
+          <text class="service-char">易</text>
+        </view>
+        <view class="service-name">二手交易</view>
+        <view class="service-desc">回收出售</view>
+        <view class="service-desc">安全放心</view>
+        <view class="service-btn">去交易</view>
+      </view>
+
+      <view class="service-item" bindtap="goToPinDou">
+        <view class="service-icon-wrap craft-ico">
+          <text class="service-char">拼</text>
+        </view>
+        <view class="service-name">拼豆摆件</view>
+        <view class="service-desc">创意摆件</view>
+        <view class="service-desc">定制美好</view>
+        <view class="service-btn">去摆件</view>
+      </view>
+    </view>
+
+    <!-- 成绩展示 -->
+    <view class="stats-section">
+      <view class="section-title">我们的成绩</view>
+      <view class="stats-grid">
+        <view class="stat-item">
+          <view class="stat-value">2000+</view>
+          <view class="stat-label">累计服务学生</view>
+        </view>
+        <view class="stat-item">
+          <view class="stat-value">98%</view>
+          <view class="stat-label">好评率</view>
+        </view>
+        <view class="stat-item">
+          <view class="stat-value">30min</view>
+          <view class="stat-label">平均响应时间</view>
+        </view>
+        <view class="stat-item">
+          <view class="stat-value">1年</view>
+          <view class="stat-label">店铺运营</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 用户评价 -->
+    <view class="review-section">
+      <view class="section-title">用户真实评价</view>
+      <view class="review-card" wx:for="{{reviews}}" wx:key="id" wx:for-item="review">
+        <view class="review-header">
+          <view class="stars">
+            <text
+              wx:for="{{[1,2,3,4,5]}}"
+              wx:key="*this"
+              wx:for-item="star"
+              class="star {{star <= review.stars ? 'star-fill' : ''}}"
+            >★</text>
+          </view>
+          <view class="review-tag">{{review.tag}}</view>
+        </view>
+        <view class="review-content">{{review.content}}</view>
+        <view class="review-author">@{{review.author}}</view>
+      </view>
+    </view>
+
+    <view style="height: 160rpx;"></view>
+  </scroll-view>
+</view>

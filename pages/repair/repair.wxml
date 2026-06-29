@@ -1,0 +1,86 @@
+<view class="container">
+  <!-- 顶部导航 -->
+  <view class="top-bar">
+    <view class="back-btn" bindtap="goBack">‹</view>
+    <view class="page-title">数码维修</view>
+    <view class="more-icon">···</view>
+  </view>
+
+  <scroll-view scroll-y="true" class="scroll-area" show-scrollbar="false">
+
+    <!-- Banner -->
+    <view class="banner">
+      <view class="banner-deco-1"></view>
+      <view class="banner-deco-2"></view>
+      <view class="banner-text">
+        <view class="banner-slogan">专业维修 <text class="banner-highlight">安心无忧</text></view>
+        <view class="banner-sub">iOS / Mac · 全品牌服务</view>
+        <view class="banner-tags">
+          <text class="b-tag">✓ 全品牌维修</text>
+          <text class="b-tag">✓ 原厂配件</text>
+          <text class="b-tag">✓ 极速服务</text>
+        </view>
+      </view>
+      <view class="banner-icon-box">
+        <text class="banner-icon-char">修</text>
+      </view>
+    </view>
+
+    <!-- 热门服务 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">热门服务</text>
+      </view>
+      <view class="service-list">
+        <view
+          class="service-item"
+          wx:for="{{services}}"
+          wx:key="id"
+          bindtap="bookService"
+          data-id="{{item.id}}"
+        >
+          <view class="service-img-box">
+            <text class="service-emoji">{{item.emoji}}</text>
+          </view>
+          <view class="service-info">
+            <view class="service-name">{{item.name}}</view>
+            <view class="service-desc">{{item.desc}}</view>
+            <view class="service-price">¥{{item.price}}<text class="price-unit"> 起</text></view>
+          </view>
+          <view class="service-right">
+            <text class="service-tag">{{item.tag}}</text>
+            <text class="service-arrow">›</text>
+          </view>
+        </view>
+      </view>
+      <view class="more-row">
+        <text class="more-text">更多服务 &gt;</text>
+        <text class="more-text">更多品牌 &gt;</text>
+      </view>
+    </view>
+
+    <!-- 快捷入口 -->
+    <view class="quick-entry">
+      <view class="entry-item" bindtap="onlineBook">
+        <view class="entry-ico-box ent-book">
+          <text class="entry-ico-char">约</text>
+        </view>
+        <view class="entry-info">
+          <view class="entry-name">在线预约</view>
+          <view class="entry-desc">预约到门店维修</view>
+        </view>
+      </view>
+      <view class="entry-item" bindtap="mailRepair">
+        <view class="entry-ico-box ent-mail">
+          <text class="entry-ico-char">邮</text>
+        </view>
+        <view class="entry-info">
+          <view class="entry-name">邮寄快修</view>
+          <view class="entry-desc">包邮到家修复服务</view>
+        </view>
+      </view>
+    </view>
+
+    <view style="height: 160rpx;"></view>
+  </scroll-view>
+</view>

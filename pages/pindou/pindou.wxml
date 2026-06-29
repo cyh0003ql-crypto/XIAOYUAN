@@ -1,0 +1,133 @@
+<view class="page-wrap">
+
+  <!-- Banner -->
+  <view class="banner">
+    <view class="banner-left">
+      <view class="banner-title-row">
+        <text class="banner-title">创意拼豆</text>
+        <view class="banner-badge">定制美好</view>
+      </view>
+      <view class="banner-sub">自由 拼114 件</view>
+      <view class="banner-tags">
+        <view class="banner-tag" bindtap="onCustomTap">✦ 个性设计</view>
+        <view class="banner-tag">✦ 手工制作</view>
+        <view class="banner-price-tag">约20起</view>
+      </view>
+    </view>
+    <view class="banner-mascot">🦌</view>
+  </view>
+
+  <!-- 分类导航 -->
+  <view class="category-row">
+    <view
+      class="category-item {{activeCategory === item.id ? 'category-active' : ''}}"
+      wx:for="{{categories}}"
+      wx:key="id"
+      wx:for-item="item"
+      data-id="{{item.id}}"
+      bindtap="onCategoryTap"
+    >
+      <view class="category-icon-wrap">
+        <text class="category-emoji">{{item.emoji}}</text>
+      </view>
+      <text class="category-name">{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- 新品推荐 -->
+  <view class="section">
+    <view class="section-header">
+      <view class="section-title">新品推荐</view>
+      <view class="section-more" bindtap="onSearchTap">查看更多 ›</view>
+    </view>
+
+    <view class="product-grid">
+      <view
+        class="product-card"
+        wx:for="{{products}}"
+        wx:key="id"
+        wx:for-item="product"
+      >
+        <!-- 商品图 -->
+        <view class="product-img-wrap">
+          <text class="product-emoji">{{product.emoji}}</text>
+          <view
+            class="like-btn {{product.liked ? 'liked' : ''}}"
+            data-index="{{index}}"
+            data-pid="{{product.id}}"
+            catchtap="onLikeTap"
+          >{{product.liked ? '❤️' : '🤍'}}</view>
+        </view>
+        <!-- 商品信息 -->
+        <view class="product-info">
+          <view class="product-name">{{product.name}}</view>
+          <view class="product-desc">{{product.desc}}</view>
+          <view class="product-bottom">
+            <text class="product-price">¥{{product.price}}</text>
+            <view
+              class="add-btn"
+              data-index="{{index}}"
+              catchtap="onAddToCart"
+            >+</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-wrap" wx:if="{{products.length === 0}}">
+      <text class="empty-emoji">🧩</text>
+      <text class="empty-text">该分类暂无商品</text>
+    </view>
+  </view>
+
+  <!-- 底部占位 -->
+  <view style="height: 120rpx;"></view>
+
+</view>
+
+<!-- 加入购物车弹窗 -->
+<view class="modal-mask" wx:if="{{showOrderModal}}" bindtap="onCloseModal">
+  <view class="modal-card" catchtap="noop">
+    <view class="modal-header">
+      <view class="modal-product-info">
+        <text class="modal-emoji">{{selectedProduct.emoji}}</text>
+        <view>
+          <view class="modal-name">{{selectedProduct.name}}</view>
+          <view class="modal-price">¥{{selectedProduct.price}}</view>
+        </view>
+      </view>
+      <view class="modal-close" bindtap="onCloseModal">✕</view>
+    </view>
+
+    <view class="modal-divider"></view>
+
+    <view class="modal-row">
+      <text class="modal-label">数量</text>
+      <view class="count-ctrl">
+        <view class="count-btn" bindtap="onCountMinus">－</view>
+        <text class="count-val">{{orderForm.count}}</text>
+        <view class="count-btn" bindtap="onCountPlus">＋</view>
+      </view>
+    </view>
+
+    <view class="modal-row modal-remark-row">
+      <text class="modal-remark-label">备注</text>
+      <input
+        class="remark-input"
+        placeholder="如有特殊要求请填写（可不填）"
+        placeholder-style="color:#BBAA99;"
+        value="{{orderForm.remark}}"
+        bindinput="onRemarkInput"
+        maxlength="50"
+      />
+    </view>
+
+    <view class="modal-total-row">
+      <text class="modal-total-label">合计</text>
+      <text class="modal-total-price">¥{{orderTotal}}</text>
+    </view>
+
+    <view class="modal-confirm-btn" bindtap="onConfirmOrder">加入购物车</view>
+  </view>
+</view>

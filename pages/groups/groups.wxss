@@ -1,0 +1,166 @@
+.container {
+  height: 100vh;
+  background: #F5EDE0;
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll-area {
+  flex: 1;
+  padding: 24rpx 0;
+}
+
+.group-list {
+  margin: 0 32rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.group-item {
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2rpx 16rpx rgba(139,99,64,0.08);
+  margin-bottom: 20rpx;
+}
+
+.group-avatar-box {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 20rpx;
+  background: #F5EDE0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 20rpx;
+}
+
+.group-emoji { font-size: 48rpx; }
+
+.group-info { flex: 1; }
+
+.group-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #3D2B1F;
+  margin-bottom: 8rpx;
+}
+
+.group-count {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.join-btn {
+  background: #8B6340;
+  color: #FFFFFF;
+  border-radius: 30rpx;
+  padding: 14rpx 36rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.join-btn-full {
+  background: #E8E0D8;
+  color: #B0A098;
+}
+
+/* ===== 二维码弹窗 ===== */
+.qr-mask {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-card {
+  width: 580rpx;
+  background: #FFFDF9;
+  border-radius: 32rpx;
+  padding: 40rpx 36rpx 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 28rpx;
+}
+
+.qr-group-emoji {
+  font-size: 72rpx;
+  margin-bottom: 12rpx;
+}
+
+.qr-group-name {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #3D2B1F;
+  margin-bottom: 6rpx;
+}
+
+.qr-group-count {
+  font-size: 24rpx;
+  color: #A88A72;
+}
+
+.qr-img-wrap {
+  width: 440rpx;
+  height: 440rpx;
+  background: #F5EDE0;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+.qr-image {
+  width: 100%;
+  height: 100%;
+}
+
+.qr-tip {
+  font-size: 24rpx;
+  color: #A88A72;
+  text-align: center;
+  margin-bottom: 32rpx;
+}
+
+.qr-actions {
+  display: flex;
+  width: 100%;
+}
+
+.qr-save-btn {
+  flex: 1;
+  text-align: center;
+  padding: 22rpx 0;
+  border-radius: 50rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #C4A882 0%, #8B6340 100%);
+  margin-right: 16rpx;
+}
+
+.qr-close-btn {
+  flex: 1;
+  text-align: center;
+  padding: 22rpx 0;
+  border-radius: 50rpx;
+  font-size: 28rpx;
+  color: #8B6340;
+  background: #F5EDE0;
+}

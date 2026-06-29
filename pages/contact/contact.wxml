@@ -1,0 +1,67 @@
+<page-meta page-style="overflow: hidden;" />
+<view class="container">
+
+  <scroll-view scroll-y="true" scroll-x="{{false}}" class="scroll-area" show-scrollbar="false">
+
+    <!-- Hero 区域 -->
+    <view class="hero-section">
+      <view class="hero-icon-wrap">
+        <text class="hero-icon">🎧</text>
+      </view>
+      <view class="hero-title">联系客服</view>
+      <view class="hero-sub">我们随时为您提供帮助</view>
+    </view>
+
+    <!-- 客服信息卡片 -->
+    <view class="info-card">
+      <!-- 微信号 -->
+      <view class="info-row" bindtap="copyWechat">
+        <view class="info-left">
+          <text class="info-icon-text">💬</text>
+          <view class="info-content">
+            <view class="info-label">客服微信号</view>
+            <view class="info-value">{{contactInfo.wechatId || '暂未配置'}}</view>
+          </view>
+        </view>
+        <view class="copy-btn" wx:if="{{contactInfo.wechatId}}">复制</view>
+      </view>
+
+      <view class="info-divider"></view>
+
+      <!-- 服务时间 -->
+      <view class="info-row">
+        <view class="info-left">
+          <text class="info-icon-text">🕐</text>
+          <view class="info-content">
+            <view class="info-label">服务时间</view>
+            <view class="info-value">{{contactInfo.serviceTime || '工作日 9:00-18:00，节假日可能延迟回复'}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 添加方式 -->
+    <view class="guide-card">
+      <view class="guide-title-row">
+        <text class="guide-pin">📌</text>
+        <text class="guide-title">添加方式</text>
+      </view>
+      <view class="guide-desc">{{contactInfo.guideText || '微信搜索客服号或扫描下方二维码，添加时备注「Petit Aura」即可获得专属服务。'}}</view>
+    </view>
+
+    <!-- 二维码卡片 -->
+    <view class="qr-card">
+      <view class="qr-label">扫码添加客服</view>
+      <view class="qr-box" wx:if="{{contactInfo.qrCode}}">
+        <image src="{{contactInfo.qrCode}}" class="qr-image" mode="aspectFit"/>
+      </view>
+      <view class="qr-empty-box" wx:else>
+        <text class="qr-empty-icon">📱</text>
+        <view class="qr-empty-text">二维码暂未配置</view>
+        <view class="qr-empty-sub">商家可在后台设置</view>
+      </view>
+    </view>
+
+    <view style="height: 80rpx;"></view>
+  </scroll-view>
+</view>

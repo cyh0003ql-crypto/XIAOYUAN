@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/map/map",
+    "pages/groups/groups",
+    "pages/repair/repair",
+    "pages/secondhand/secondhand",
+    "pages/pindou/pindou",
+    "pages/merchant/merchant",
+    "pages/map-admin/map-admin",
+    "pages/groups-admin/groups-admin",
+    "pages/orders/orders",
+    "pages/profile/profile",
+    "pages/login/login",
+    "pages/settings/settings",
+    "pages/contact/contact",
+    "pages/contact-admin/contact-admin"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F5EDE0",
+    "navigationBarTitleText": "Petit Aura校园服务",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F5EDE0"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#999999",
+    "selectedColor": "#8B6340",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "首页" },
+      { "pagePath": "pages/map/map", "text": "服务" },
+      { "pagePath": "pages/groups/groups", "text": "加入校园群" },
+      { "pagePath": "pages/orders/orders", "text": "订单" },
+      { "pagePath": "pages/profile/profile", "text": "我的" }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于显示您在校园地图上的当前位置"
+    }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

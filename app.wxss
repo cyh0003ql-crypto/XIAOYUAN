@@ -1,0 +1,61 @@
+/* 全局样式 —— 注意：微信小程序 WXSS 不支持 * 通配符选择器 */
+page {
+  background-color: #F5EDE0;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  color: #333333;
+  box-sizing: border-box;
+}
+
+/* 通用卡片 */
+.card {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 通用主按钮 */
+.btn-primary {
+  background: #8B6340;
+  color: #FFFFFF;
+  border-radius: 40rpx;
+  padding: 16rpx 40rpx;
+  font-size: 28rpx;
+  text-align: center;
+  display: inline-block;
+}
+
+/* 通用次按钮 */
+.btn-secondary {
+  background: #F5EDE0;
+  color: #8B6340;
+  border-radius: 40rpx;
+  padding: 16rpx 40rpx;
+  font-size: 28rpx;
+  text-align: center;
+  display: inline-block;
+}
+
+/* 分割线 */
+.divider {
+  height: 1rpx;
+  background: #F0E8DC;
+  margin: 20rpx 0;
+}
+
+/* 页面标题 */
+.page-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333333;
+  text-align: center;
+}
+
+/* 标签徽章 */
+.badge {
+  background: #F5EDE0;
+  color: #8B6340;
+  border-radius: 20rpx;
+  padding: 4rpx 16rpx;
+  font-size: 22rpx;
+}

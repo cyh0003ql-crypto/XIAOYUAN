@@ -1,0 +1,219 @@
+page {
+  background-color: #F5EDE0;
+  font-family: -apple-system, 'PingFang SC', sans-serif;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.container {
+  height: 100vh;
+  width: 100%;
+  background: #F5EDE0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* 滚动区域 */
+.scroll-area {
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 24rpx;
+  overflow-x: hidden;
+}
+
+/* Hero 区域 */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0 32rpx;
+}
+
+.hero-icon-wrap {
+  width: 130rpx;
+  height: 130rpx;
+  background: #FFFDF9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24rpx;
+  box-shadow: 0 6rpx 24rpx rgba(139,99,64,0.14);
+}
+
+.hero-icon {
+  font-size: 64rpx;
+}
+
+.hero-title {
+  font-size: 38rpx;
+  font-weight: 700;
+  color: #3D2B1F;
+  margin-bottom: 10rpx;
+}
+
+.hero-sub {
+  font-size: 26rpx;
+  color: #A88A72;
+}
+
+/* 信息卡片 */
+.info-card {
+  background: #FFFDF9;
+  border-radius: 24rpx;
+  padding: 8rpx 28rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 3rpx 16rpx rgba(139,99,64,0.08);
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 0;
+}
+
+.info-left {
+  display: flex;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.info-icon-text {
+  font-size: 36rpx;
+  margin-right: 20rpx;
+  margin-top: 2rpx;
+  flex-shrink: 0;
+}
+
+.info-content {
+  flex: 1;
+}
+
+.info-label {
+  font-size: 22rpx;
+  color: #A88A72;
+  margin-bottom: 8rpx;
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: #3D2B1F;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.copy-btn {
+  background: #3D2B1F;
+  color: #FFFFFF;
+  font-size: 24rpx;
+  font-weight: 500;
+  padding: 12rpx 28rpx;
+  border-radius: 30rpx;
+  flex-shrink: 0;
+  margin-left: 20rpx;
+}
+
+.info-divider {
+  height: 1rpx;
+  background: #F0E8DC;
+  margin: 0 -4rpx;
+}
+
+/* 添加方式 */
+.guide-card {
+  background: #FFFDF9;
+  border-radius: 24rpx;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 3rpx 16rpx rgba(139,99,64,0.08);
+}
+
+.guide-title-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.guide-pin {
+  font-size: 32rpx;
+  margin-right: 10rpx;
+}
+
+.guide-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #3D2B1F;
+}
+
+.guide-desc {
+  font-size: 26rpx;
+  color: #7A5A3A;
+  line-height: 1.8;
+}
+
+/* 二维码卡片 */
+.qr-card {
+  background: #FFFDF9;
+  border-radius: 24rpx;
+  padding: 32rpx 28rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 3rpx 16rpx rgba(139,99,64,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-label {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #3D2B1F;
+  margin-bottom: 28rpx;
+}
+
+.qr-box {
+  width: 360rpx;
+  height: 360rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  background: #F5EDE0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-image {
+  width: 100%;
+  height: 100%;
+}
+
+.qr-empty-box {
+  width: 360rpx;
+  height: 240rpx;
+  background: #F5EDE0;
+  border-radius: 16rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-empty-icon {
+  font-size: 64rpx;
+  margin-bottom: 16rpx;
+  opacity: 0.4;
+}
+
+.qr-empty-text {
+  font-size: 26rpx;
+  color: #A88A72;
+  margin-bottom: 8rpx;
+}
+
+.qr-empty-sub {
+  font-size: 22rpx;
+  color: #CCBBAA;
+}

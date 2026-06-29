@@ -1,0 +1,46 @@
+<view class="tab-bar">
+  <view
+    class="tab-item {{selected === 0 ? 'active' : ''}}"
+    bindtap="switchTab"
+    data-index="0"
+    data-url="/pages/index/index"
+  >
+    <view class="tab-icon"><text class="icon-text">⌂</text></view>
+    <text class="tab-label">首页</text>
+  </view>
+
+  <view
+    class="tab-item {{selected === 1 ? 'active' : ''}}"
+    bindtap="switchTab"
+    data-index="1"
+    data-url="/pages/map/map"
+  >
+    <view class="tab-icon"><text class="icon-text">◎</text></view>
+    <text class="tab-label">服务</text>
+  </view>
+
+  <view class="tab-item tab-center" bindtap="switchTab" data-index="2" data-url="/pages/groups/groups">
+    <view class="center-btn"><text class="center-plus">+</text></view>
+    <text class="tab-label center-label">加入校园群</text>
+  </view>
+
+  <view
+    class="tab-item {{selected === 3 ? 'active' : ''}}"
+    bindtap="switchTab"
+    data-index="3"
+    data-url="/pages/orders/orders"
+  >
+    <view class="tab-icon"><text class="icon-text">☰</text></view>
+    <text class="tab-label">订单</text>
+  </view>
+
+  <view
+    class="tab-item {{selected === 4 ? 'active' : ''}}"
+    bindtap="switchTab"
+    data-index="4"
+    data-url="/pages/profile/profile"
+  >
+    <view class="tab-icon"><text class="icon-text">◉</text></view>
+    <text class="tab-label">我的</text>
+  </view>
+</view>

@@ -1,0 +1,52 @@
+<view class="container">
+  <!-- 顶部Tab -->
+  <view class="tab-bar">
+    <view
+      class="tab-item {{activeTab === item.id ? 'tab-active' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="id"
+      bindtap="switchOrderTab"
+      data-id="{{item.id}}"
+    >{{item.name}}</view>
+  </view>
+
+  <scroll-view scroll-y="true" class="scroll-area" show-scrollbar="false">
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{orders.length === 0}}">
+      <view class="empty-icon">📦</view>
+      <view class="empty-text">暂无订单</view>
+      <view class="empty-desc">去逛逛，发现好服务</view>
+      <view class="empty-btn" bindtap="goShop">去逛逛</view>
+    </view>
+
+    <!-- 订单列表 -->
+    <view wx:else>
+      <view class="order-card" wx:for="{{orders}}" wx:key="id" wx:for-item="order">
+        <view class="order-header">
+          <text class="order-store">{{order.store}}</text>
+          <text class="order-status {{order.statusClass}}">{{order.status}}</text>
+        </view>
+        <view class="order-item-row">
+          <view class="order-img-box">
+            <text class="order-emoji">{{order.emoji}}</text>
+          </view>
+          <view class="order-detail">
+            <view class="order-name">{{order.name}}</view>
+            <view class="order-spec">{{order.spec}}</view>
+            <view class="order-price">¥{{order.price}}</view>
+          </view>
+        </view>
+        <view class="order-footer">
+          <text class="order-date">{{order.date}}</text>
+          <view class="order-actions">
+            <view class="action-btn secondary" bindtap="contactStore" data-id="{{order.id}}">联系店家</view>
+            <view class="action-btn primary" bindtap="reviewOrder" data-id="{{order.id}}" wx:if="{{order.canReview}}">评价</view>
+            <view class="action-btn primary" bindtap="rebuyOrder" data-id="{{order.id}}" wx:if="{{order.canRebuy}}">再次购买</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view style="height: 160rpx;"></view>
+  </scroll-view>
+</view>

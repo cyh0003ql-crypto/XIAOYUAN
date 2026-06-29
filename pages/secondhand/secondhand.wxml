@@ -1,0 +1,92 @@
+<view class="container">
+  <!-- 顶部导航 -->
+  <view class="top-bar">
+    <view class="back-btn" bindtap="goBack">‹</view>
+    <view class="page-title">二手交易</view>
+    <view class="more-icon">···</view>
+  </view>
+
+  <scroll-view scroll-y="true" class="scroll-area" show-scrollbar="false">
+
+    <!-- Banner -->
+    <view class="banner">
+      <view class="banner-deco-1"></view>
+      <view class="banner-deco-2"></view>
+      <view class="banner-text">
+        <view class="banner-slogan">真实维护 <text class="banner-highlight">交易安心</text></view>
+        <view class="banner-sub">诚品推荐 | 优先退款 | 品质服务</view>
+        <view class="banner-tags">
+          <text class="b-tag">✓ 实名认证</text>
+          <text class="b-tag">✓ 隐私保护</text>
+          <text class="b-tag">✓ 品质保障</text>
+        </view>
+      </view>
+      <view class="banner-icon-box">
+        <text class="banner-icon-char">易</text>
+      </view>
+    </view>
+
+    <!-- 回收服务 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">回收服务</text>
+      </view>
+      <view class="recycle-list">
+        <view
+          class="recycle-item"
+          wx:for="{{recycleServices}}"
+          wx:key="id"
+          bindtap="goRecycle"
+          data-id="{{item.id}}"
+        >
+          <view class="recycle-icon-box">
+            <text class="recycle-emoji">{{item.emoji}}</text>
+          </view>
+          <view class="recycle-info">
+            <view class="recycle-name">{{item.name}}</view>
+            <view class="recycle-desc">{{item.desc}}</view>
+          </view>
+          <view class="recycle-arrow">›</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 二手优选 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">二手优选</text>
+        <text class="section-more" bindtap="viewAll">查看全部 &gt;</text>
+      </view>
+      <view class="product-grid">
+        <view
+          class="product-item"
+          wx:for="{{products}}"
+          wx:key="id"
+          wx:for-item="product"
+          bindtap="viewProduct"
+          data-id="{{product.id}}"
+        >
+          <view class="product-img-box">
+            <text class="product-emoji">{{product.emoji}}</text>
+          </view>
+          <view class="product-name">{{product.name}}</view>
+          <view class="product-spec">{{product.spec}}</view>
+          <view class="product-price-row">
+            <text class="product-price">¥{{product.price}}</text>
+            <view class="like-btn" catchtap="toggleLike" data-id="{{product.id}}">
+              <text class="like-icon {{product.liked ? 'liked' : ''}}">{{product.liked ? '❤' : '♡'}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view style="height: 160rpx;"></view>
+  </scroll-view>
+
+  <!-- 底部发布按钮 -->
+  <view class="publish-btn" bindtap="publishItem">
+    <text class="publish-icon">+</text>
+    <text>发布闲置</text>
+  </view>
+</view>

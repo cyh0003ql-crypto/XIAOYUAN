@@ -1,0 +1,98 @@
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-wrap">
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="搜索服务点 / 店铺 / 服务" placeholder-style="color:#BBAA99;" />
+    </view>
+    <view class="more-btn">···</view>
+  </view>
+
+  <!-- 地图区 -->
+  <view class="map-wrap">
+
+    <!-- ===== 图片地图模式（movable-area 原生缩放+拖拽） ===== -->
+    <block wx:if="{{useImgMap}}">
+      <movable-area class="img-map-area" scale-area>
+        <movable-view
+          class="img-map-view"
+          direction="all"
+          scale="{{true}}"
+          scale-min="1"
+          scale-max="4"
+          out-of-bounds="{{false}}"
+          style="width:750rpx;height:{{imgHeightRpx}}rpx;"
+        >
+          <image
+            src="{{customMapPath}}"
+            class="img-map"
+            mode="widthFix"
+            bindload="onImgLoad"
+          />
+          <!-- 标注 Pin -->
+          <view
+            wx:for="{{filteredImgMarkers}}"
+            wx:key="id"
+            class="map-pin {{popupStore && popupStore.id === item.id ? 'pin-active' : ''}}"
+            style="left:{{item.xPct}}%;top:{{item.yPct}}%;"
+            data-id="{{item.id}}"
+            catchtap="onImgPinTap"
+          >
+            <view class="pin-dot"></view>
+            <view class="pin-label">{{item.name}}</view>
+          </view>
+        </movable-view>
+      </movable-area>
+    </block>
+
+    <!-- ===== 实时地图模式 ===== -->
+    <block wx:else>
+      <map
+        id="campus-map"
+        class="campus-map"
+        latitude="{{mapLat}}"
+        longitude="{{mapLng}}"
+        markers="{{markers}}"
+        scale="{{mapScale}}"
+        show-location="true"
+        enable-zoom="{{true}}"
+        enable-scroll="{{true}}"
+        bindmarkertap="onMarkerTap"
+        bindtap="onMapBgTap"
+      />
+    </block>
+
+    <!-- 右侧分类面板 -->
+    <view class="category-panel">
+      <view class="category-list">
+        <view
+          wx:for="{{categories}}"
+          wx:key="id"
+          class="category-item {{activeCategory === item.id ? 'category-active' : ''}}"
+          bindtap="filterByCategory"
+          data-id="{{item.id}}"
+        >{{item.name}}</view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- ===== 底部店铺卡片（地图下方，滑入显示） ===== -->
+  <view class="bottom-sheet {{currentStore ? 'bottom-sheet-show' : ''}}">
+    <view wx:if="{{currentStore}}" class="callout-card" catchtap="">
+      <!-- 左侧店铺图片 -->
+      <view class="callout-img-wrap">
+        <image wx:if="{{currentStore.image}}" class="callout-img" src="{{currentStore.image}}" mode="aspectFill" />
+        <view wx:else class="callout-img-placeholder">🏪</view>
+      </view>
+      <!-- 右侧信息 -->
+      <view class="callout-info">
+        <view class="callout-name">{{currentStore.name}}</view>
+        <view class="callout-row">📍 {{currentStore.address}}</view>
+        <view class="callout-row">🕐 营业时间 {{currentStore.hours}}</view>
+      </view>
+      <view class="callout-close" catchtap="closePopup">×</view>
+    </view>
+  </view>
+
+</view>

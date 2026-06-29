@@ -1,0 +1,212 @@
+<view class="page">
+
+  <!-- Tab 切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{tab === 'store' ? 'tab-active' : ''}}" data-tab="store" bindtap="onTabSwitch">
+      📍 标注管理
+    </view>
+    <view class="tab-item {{tab === 'category' ? 'tab-active' : ''}}" data-tab="category" bindtap="onTabSwitch">
+      🏷 分类管理
+    </view>
+  </view>
+
+  <!-- ========== 标注管理 ========== -->
+  <block wx:if="{{tab === 'store'}}">
+
+    <!-- 地图区域 -->
+    <view class="map-section">
+      <!-- 已上传地图 -->
+      <block wx:if="{{customMapPath}}">
+        <view class="hint-bar">
+          <text class="hint-icon">💡</text>
+          <text class="hint-text">点击地图任意位置添加标注</text>
+          <view class="upload-link" bindtap="onUploadMap">更换</view>
+        </view>
+        <view class="img-map-container" bindtap="onImageTap">
+          <image src="{{customMapPath}}" class="campus-img" mode="widthFix" />
+          <!-- 已有标注 pin -->
+          <view
+            wx:for="{{imgMarkers}}"
+            wx:key="id"
+            class="map-pin"
+            style="left:{{item.xPct}}%;top:{{item.yPct}}%;"
+            data-id="{{item.id}}"
+            catchtap="onMarkerPinTap"
+          >
+            <view class="pin-dot"></view>
+            <view class="pin-label">{{item.name}}</view>
+          </view>
+          <!-- 点击弹窗 -->
+          <view class="img-popup" wx:if="{{showStorePopup && popupStore}}" catchtap="closeStorePopup">
+            <view class="img-popup-card" catchtap="noop">
+              <view class="img-popup-name">{{popupStore.name}}</view>
+              <view class="img-popup-addr">{{popupStore.address}}</view>
+              <view class="img-popup-hours">营业时间 {{popupStore.hours}}</view>
+              <view class="img-popup-close" bindtap="closeStorePopup">×</view>
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <!-- 未上传状态 -->
+      <block wx:else>
+        <view class="upload-placeholder" bindtap="onUploadMap">
+          <view class="upload-icon">🗺️</view>
+          <view class="upload-title">上传校园地图</view>
+          <view class="upload-desc">支持从相册选择或拍照，上传后可在图上点击添加店铺标注</view>
+          <view class="upload-btn-main">选择图片上传</view>
+        </view>
+      </block>
+    </view>
+
+    <!-- 已添加标注列表 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">已添加标注（{{stores.length}}）</text>
+      </view>
+
+      <view class="store-empty" wx:if="{{stores.length === 0}}">
+        <text>暂无标注，请上传地图后点击添加</text>
+      </view>
+
+      <view class="store-item" wx:for="{{stores}}" wx:key="id">
+        <view class="store-icon">📍</view>
+        <view class="store-info">
+          <view class="store-name">{{item.name}}</view>
+          <view class="store-meta">{{item.address}}</view>
+          <view class="store-meta2">
+            <text class="cat-badge">{{item.category}}</text>
+            <text class="hours-text">  {{item.hours}}</text>
+          </view>
+        </view>
+        <view class="del-btn" data-id="{{item.id}}" data-name="{{item.name}}" bindtap="onDelStoreTap">删除</view>
+      </view>
+    </view>
+  </block>
+
+  <!-- ========== 分类管理 ========== -->
+  <block wx:if="{{tab === 'category'}}">
+    <view class="section" style="margin-top:24rpx;">
+      <view class="section-header">
+        <text class="section-title">分类列表（{{categories.length}}）</text>
+        <view class="add-btn" bindtap="onOpenAddCat">+ 新增</view>
+      </view>
+      <view class="cat-item" wx:for="{{categories}}" wx:key="id">
+        <view class="cat-left">
+          <view class="cat-dot {{item.id === 'all' ? 'dot-default' : 'dot-normal'}}"></view>
+          <text class="cat-name">{{item.name}}</text>
+          <text class="cat-id-tip">ID: {{item.id}}</text>
+        </view>
+        <view
+          class="del-btn {{item.id === 'all' ? 'del-disabled' : ''}}"
+          data-id="{{item.id}}"
+          data-name="{{item.name}}"
+          bindtap="onDelCatTap"
+        >{{item.id === 'all' ? '默认' : '删除'}}</view>
+      </view>
+      <view class="cat-tip">新增分类后，可在添加标注时直接点选。</view>
+    </view>
+  </block>
+
+  <view style="height:80rpx;"></view>
+</view>
+
+<!-- ===== 添加标注弹窗 ===== -->
+<view class="modal-mask" wx:if="{{showAddStore}}" bindtap="onCloseAddStore">
+  <view class="modal-card" catchtap="noop">
+    <view class="modal-title">添加店铺标注</view>
+    <view class="modal-divider"></view>
+    <view class="modal-coord-tip">📍 位置已选：{{pickXPct}}%, {{pickYPct}}%</view>
+
+    <view class="mf-item">
+      <text class="mf-label">店名</text>
+      <input class="mf-input" placeholder="店铺名称" bindinput="onInputName" value="{{newName}}" />
+    </view>
+    <view class="mf-item">
+      <text class="mf-label">地址</text>
+      <input class="mf-input" placeholder="如：广科生活中心1栋A12" bindinput="onInputAddress" value="{{newAddress}}" />
+    </view>
+    <view class="mf-item">
+      <text class="mf-label">时间</text>
+      <input class="mf-input" placeholder="如：09:00-21:00" bindinput="onInputHours" value="{{newHours}}" />
+    </view>
+
+    <!-- 店铺图片上传 -->
+    <view class="mf-item mf-item-img">
+      <text class="mf-label">图片</text>
+      <view class="mf-img-area" bindtap="onUploadStoreImage">
+        <image wx:if="{{newImage}}" class="mf-img-preview" src="{{newImage}}" mode="aspectFill" />
+        <view wx:else class="mf-img-placeholder">
+          <text class="mf-img-icon">📷</text>
+          <text class="mf-img-tip">点击上传店铺图片</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 分类芯片选择 -->
+    <view class="cat-picker-wrap">
+      <text class="mf-label" style="margin-bottom:12rpx;display:block;">分类</text>
+      <view class="cat-chips">
+        <view
+          wx:for="{{pickableCats}}"
+          wx:key="id"
+          class="cat-chip {{newCategory === item.id ? 'cat-chip-active' : ''}}"
+          data-id="{{item.id}}"
+          bindtap="onSelectCat"
+        >{{item.name}}</view>
+      </view>
+      <view class="cat-empty-tip" wx:if="{{pickableCats.length === 0}}">
+        请先在「分类管理」中添加分类
+      </view>
+    </view>
+
+    <view class="modal-error" wx:if="{{addStoreError}}">{{addStoreError}}</view>
+
+    <view class="modal-actions">
+      <view class="modal-btn-cancel" bindtap="onCloseAddStore">取消</view>
+      <view class="modal-btn-confirm" bindtap="onConfirmAddStore">保存标注</view>
+    </view>
+  </view>
+</view>
+
+<!-- ===== 删除标注确认 ===== -->
+<view class="modal-mask" wx:if="{{showDelStore}}" bindtap="onCancelDelStore">
+  <view class="modal-card" catchtap="noop">
+    <view class="modal-title">删除标注</view>
+    <view class="modal-divider"></view>
+    <view class="modal-notice">确定删除「{{delStoreName}}」？地图上的标注将同步移除。</view>
+    <view class="modal-actions">
+      <view class="modal-btn-cancel" bindtap="onCancelDelStore">取消</view>
+      <view class="modal-btn-danger" bindtap="onConfirmDelStore">删除</view>
+    </view>
+  </view>
+</view>
+
+<!-- ===== 新增分类弹窗 ===== -->
+<view class="modal-mask" wx:if="{{showAddCat}}" bindtap="onCloseAddCat">
+  <view class="modal-card" catchtap="noop">
+    <view class="modal-title">新增分类</view>
+    <view class="modal-divider"></view>
+    <view class="mf-item">
+      <text class="mf-label">名称</text>
+      <input class="mf-input" placeholder="如：快餐 / 超市 …" bindinput="onInputCatName" value="{{newCatName}}" />
+    </view>
+    <view class="modal-actions">
+      <view class="modal-btn-cancel" bindtap="onCloseAddCat">取消</view>
+      <view class="modal-btn-confirm" bindtap="onConfirmAddCat">添加</view>
+    </view>
+  </view>
+</view>
+
+<!-- ===== 删除分类确认 ===== -->
+<view class="modal-mask" wx:if="{{showDelCat}}" bindtap="onCancelDelCat">
+  <view class="modal-card" catchtap="noop">
+    <view class="modal-title">删除分类</view>
+    <view class="modal-divider"></view>
+    <view class="modal-notice">确定删除分类「{{delCatName}}」？</view>
+    <view class="modal-actions">
+      <view class="modal-btn-cancel" bindtap="onCancelDelCat">取消</view>
+      <view class="modal-btn-danger" bindtap="onConfirmDelCat">删除</view>
+    </view>
+  </view>
+</view>
